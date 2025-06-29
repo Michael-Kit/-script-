@@ -1,25 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JS home works</title>
+    <title>Шпаргалка script-атрибути</title>
     <link rel="stylesheet" href="./CSS/styles.css" />
-    <!-- модальне вікно з бібліотеки -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.css"
-    />
   </head>
   <body>
-    <header></header>
-    <main>
-      <ul class="gallery"></ul>
-    </main>
-    <footer></footer>
-    <!-- Скрипт бібліотека -->
-    <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5.0.4/dist/basicLightbox.min.js"></script>
-
-    <script src="./js/gallery.js"></script>
+    <h2>🧭 Шпаргалка: Який атрибут для &lt;script&gt; коли використовувати</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Сценарій</th>
+          <th><code>async</code></th>
+          <th><code>defer</code></th>
+          <th>Без атрибутів</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>НЕ залежить від DOM або інших скриптів (аналітика, віджети)</td>
+          <td>✅ Так</td>
+          <td>❌ Ні</td>
+          <td>
+            ❌ Лише якщо внизу <code>&lt;body&gt;</code>, але краще
+            <code>async</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Використовує DOM (події, елементи)</td>
+          <td>❌ Ні</td>
+          <td>✅ Так</td>
+          <td>✅ Так, якщо скрипт внизу</td>
+        </tr>
+        <tr>
+          <td>Залежить від бібліотеки, що підключена раніше</td>
+          <td>❌ Ні</td>
+          <td>✅ Так (і бібліотеку також)</td>
+          <td>✅ Так, якщо порядок правильний</td>
+        </tr>
+        <tr>
+          <td>Потрібен порядок виконання скриптів</td>
+          <td>❌ Ні</td>
+          <td>✅ Так (виконання у порядку HTML)</td>
+          <td>
+            ⚠ Лише якщо обидва скрипти в самому низу <code>&lt;body&gt;</code>
+          </td>
+        </tr>
+        <tr>
+          <td>Максимальна швидкість завантаження сторінки</td>
+          <td>✅ async (тільки незалежні)</td>
+          <td>✅ defer (не блокує DOM)</td>
+          <td>😐 Може блокувати рендеринг</td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
